@@ -10,7 +10,11 @@ mortar:
         port: 5482
   logger:
     level: debug
-    console: true
+    console: false
+    static:
+      name: false
+      git: false
+      host: false
   monitor:
     address: "address:port"
     prefix: "subworkshop"

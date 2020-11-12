@@ -38,12 +38,13 @@ func (w *workshopImpl) AcceptCar(ctx context.Context, car *workshop.Car) (*empty
 	return w.deps.Controller.AcceptCar(ctx, car)
 }
 
-func (w *workshopImpl) PaintCar(ctx context.Context, request *workshop.PaintCarRequest) (*empty.Empty, error) {
-	if err := w.deps.Validations.PaintCar(ctx, request); err != nil {
-		return nil, err
+func (w *workshopImpl) PaintCar(ctx context.Context, request *workshop.PaintCarRequest) (result *empty.Empty, err error) {
+	err = w.deps.Validations.PaintCar(ctx, request)
+	if err == nil {
+		result, err = w.deps.Controller.PaintCar(ctx, request)
 	}
-	w.deps.Logger.Debug(ctx, "sending car to be painted")
-	return w.deps.Controller.PaintCar(ctx, request)
+	w.deps.Logger.WithError(err).Debug(ctx, "sending car to be painted")
+	return
 }
 
 func (w *workshopImpl) RetrieveCar(ctx context.Context, request *workshop.RetrieveCarRequest) (*workshop.Car, error) {

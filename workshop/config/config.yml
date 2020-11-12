@@ -11,6 +11,11 @@ mortar:
   logger:
     level: debug
     console: true
+    static:
+      name: true
+      git: true
+      host: true
+
   monitor:
     address: "address:port"
     prefix: "workshop"

@@ -24,11 +24,7 @@ func LoggerFxOption() fx.Option {
 func zeroLogBuilder(config cfg.Config) log.Builder {
 	builder := bzerolog.Builder().IncludeCaller()
 	if config.Get(mortar.LoggerWriterConsole).Bool() {
-		builder = builder.
-			AddStaticFields(map[string]interface{}{
-				"service": config.Get("mortar.name").String(),
-			}).
-			SetWriter(bzerolog.ConsoleWriter(os.Stderr))
+		builder = builder.SetWriter(bzerolog.ConsoleWriter(os.Stderr))
 	}
 	return builder
 }
