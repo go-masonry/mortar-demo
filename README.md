@@ -41,58 +41,23 @@ Now you should have Workshop and Sub Workshop services running. It's time to exe
 
 * Register a new car
     ```shell script
-    http --print bBhH POST http://localhost:5381/v1/workshop/cars number="ABCD4248" owner="Mr. Smith" body_style="SEDAN" color="red"
-     
-    POST /v1/workshop/cars HTTP/1.1
-    Accept: application/json, */*;q=0.5
-    Accept-Encoding: gzip, deflate
-    Connection: keep-alive
-    Content-Length: 83
-    Content-Type: application/json
-    Host: localhost:5381
-    User-Agent: HTTPie/2.3.0
-
-    {
-        "body_style": "SEDAN",
-        "color": "red",
-        "number": "ABCD4248",
-        "owner": "Mr. Smith"
-    }
-
-
-    HTTP/1.1 200 OK
-    Content-Length: 2
-    Content-Type: application/json
-    Date: Thu, 12 Nov 2020 11:31:50 GMT
-    Grpc-Metadata-Content-Type: application/grpc
-
-    {}
+    curl -X "POST" "http://localhost:5381/v1/workshop/cars" \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d $'{
+    "number": "ABCD4248",
+    "owner": "Mr. Smith",
+    "body_style": "SEDAN",
+    "color": "red"
+    }'
     ```
 
 * Paint `ABCD4248` Car
     ```shell script
-    http --print bBhH PUT http://localhost:5381/v1/workshop/cars/ABCD4248/paint desired_color="green"
-    PUT /v1/workshop/cars/ABCD4248/paint HTTP/1.1
-    Accept: application/json, */*;q=0.5
-    Accept-Encoding: gzip, deflate
-    Connection: keep-alive
-    Content-Length: 26
-    Content-Type: application/json
-    Host: localhost:5381
-    User-Agent: HTTPie/2.3.0
-
-    {
-        "desired_color": "green"
-    }
-
-
-    HTTP/1.1 200 OK
-    Content-Length: 2
-    Content-Type: application/json
-    Date: Thu, 12 Nov 2020 13:19:47 GMT
-    Grpc-Metadata-Content-Type: application/grpc
-
-    {}
+    curl -X "PUT" "http://localhost:5381/v1/workshop/cars/ABCD4248/paint" \
+         -H 'Content-Type: application/json; charset=utf-8' \
+         -d $'{
+      "desired_color": "green"
+    }'
     ```
 ## So what's there to see...
 
