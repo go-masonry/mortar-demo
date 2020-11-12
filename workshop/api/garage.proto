@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option go_package = ".;workshop";
+
+package tutorial.workshop;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message Car {
+  enum body {
+    SEDAN = 0;
+    PHAETON = 1;
+    HATCHBACK = 2;
+  }
+
+  string number = 1;
+  string owner = 2;
+  body body_style = 3;
+  string color = 4;
+}
+
+message PaintCarRequest {
+  string car_number = 1;
+  string desired_color = 2;
+}
+
+message PaintFinishedRequest {
+  string car_number = 1;
+  string desired_color = 2;
+}
+
+message RetrieveCarRequest {
+  string car_number = 1;
+}
+
+service Workshop {
+  rpc AcceptCar(Car) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/v1/workshop/cars"
+      body: "*"
+    };
+  }
+
+  rpc PaintCar(PaintCarRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/v1/workshop/cars/{car_number}/paint"
+      body: "*"
+    };
+  }
+
+  rpc RetrieveCar(RetrieveCarRequest) returns (Car) {
+    option (google.api.http) = {
+      get: "/v1/workshop/cars/{car_number}"
+    };
+  }
+
+  // CarPainted is gRPC only endpoint, used as a callback from Sub workshop
+  rpc CarPainted(PaintFinishedRequest) returns (google.protobuf.Empty);
+}

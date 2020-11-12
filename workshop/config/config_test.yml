@@ -1,0 +1,5 @@
+mortar:
+  name: "tutorial_test"
+  logger:
+    level: info
+    console: true

@@ -1,0 +1,56 @@
+mortar:
+  name: "subworkshop"
+  server:
+    grpc:
+      port: 5480
+    rest:
+      external:
+        port: 5481
+      internal:
+        port: 5482
+  logger:
+    level: debug
+    console: true
+  monitor:
+    address: "address:port"
+    prefix: "subworkshop"
+    tags:
+      service: subworkshop
+  middleware:
+    rest:
+      client:
+        trace:
+          request: true
+          response: true
+    grpc:
+      server:
+        log:
+          request: true
+          response: false
+          level: debug
+        trace:
+          request: true
+          response: true
+        headers:
+          - authorization
+      client:
+        trace:
+          request: true
+          response: true
+    logger:
+      headers:
+        - special-header
+  handlers:
+    self:
+      obfuscate:
+        - "pass"
+        - "auth"
+        - "secret"
+        - "login"
+        - "user"
+        - "logname"
+        - "token"
+
+subworkshop:
+
+

@@ -1,0 +1,60 @@
+mortar:
+  name: "workshop"
+  server:
+    grpc:
+      port: 5380
+    rest:
+      external:
+        port: 5381
+      internal:
+        port: 5382
+  logger:
+    level: debug
+    console: true
+  monitor:
+    address: "address:port"
+    prefix: "workshop"
+    tags:
+      service: workshop
+  middleware:
+    rest:
+      client:
+        trace:
+          request: true
+          response: true
+    grpc:
+      server:
+        log:
+          request: true
+          response: false
+          level: debug
+        trace:
+          request: true
+          response: true
+        headers:
+          - authorization
+      client:
+        trace:
+          request: true
+          response: true
+    logger:
+      headers:
+        - special-header
+  handlers:
+    self:
+      obfuscate:
+        - "pass"
+        - "auth"
+        - "secret"
+        - "login"
+        - "user"
+        - "logname"
+        - "token"
+
+workshop:
+  services:
+    subworkshop:
+      callbackhost: "localhost"
+      host: "localhost"
+      grpcport: 5480
+      restport: 5481

@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/garage.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/workshop/cars": {
+      "post": {
+        "operationId": "Workshop_AcceptCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/workshopCar"
+            }
+          }
+        ],
+        "tags": [
+          "Workshop"
+        ]
+      }
+    },
+    "/v1/workshop/cars/{carNumber}": {
+      "get": {
+        "operationId": "Workshop_RetrieveCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/workshopCar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "carNumber",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Workshop"
+        ]
+      }
+    },
+    "/v1/workshop/cars/{carNumber}/paint": {
+      "put": {
+        "operationId": "Workshop_PaintCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "carNumber",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/workshopPaintCarRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Workshop"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Carbody": {
+      "type": "string",
+      "enum": [
+        "SEDAN",
+        "PHAETON",
+        "HATCHBACK"
+      ],
+      "default": "SEDAN"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "workshopCar": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "bodyStyle": {
+          "$ref": "#/definitions/Carbody"
+        },
+        "color": {
+          "type": "string"
+        }
+      }
+    },
+    "workshopPaintCarRequest": {
+      "type": "object",
+      "properties": {
+        "carNumber": {
+          "type": "string"
+        },
+        "desiredColor": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

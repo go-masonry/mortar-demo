@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/garage.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/subworkshop/paint": {
+      "post": {
+        "operationId": "SubWorkshop_PaintCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subworkshopSubPaintCarRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SubWorkshop"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Carbody": {
+      "type": "string",
+      "enum": [
+        "SEDAN",
+        "PHAETON",
+        "HATCHBACK"
+      ],
+      "default": "SEDAN"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "subworkshopCar": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "bodyStyle": {
+          "$ref": "#/definitions/Carbody"
+        },
+        "color": {
+          "type": "string"
+        }
+      }
+    },
+    "subworkshopSubPaintCarRequest": {
+      "type": "object",
+      "properties": {
+        "car": {
+          "$ref": "#/definitions/subworkshopCar"
+        },
+        "desiredColor": {
+          "type": "string"
+        },
+        "callbackServiceAddress": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
