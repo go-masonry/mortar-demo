@@ -2,6 +2,8 @@ package services
 
 import (
 	"context"
+	"fmt"
+	"github.com/go-masonry/mortar/interfaces/monitor"
 
 	workshop "github.com/go-masonry/mortar-demo/workshop/api"
 	"github.com/go-masonry/mortar-demo/workshop/app/controllers"
@@ -17,6 +19,7 @@ type workshopServiceDeps struct {
 	Logger      log.Logger
 	Controller  controllers.WorkshopController
 	Validations validations.WorkshopValidations
+	Metrics     monitor.Metrics `optional:"true"`
 }
 
 type workshopImpl struct {
@@ -39,6 +42,13 @@ func (w *workshopImpl) AcceptCar(ctx context.Context, car *workshop.Car) (*empty
 }
 
 func (w *workshopImpl) PaintCar(ctx context.Context, request *workshop.PaintCarRequest) (result *empty.Empty, err error) {
+	defer func() {
+		counter := w.deps.Metrics.WithTags(monitor.Tags{
+			"color":   request.GetDesiredColor(),
+			"success": fmt.Sprintf("%t", err == nil),
+		}).Counter("paint_desired_color", "New paint color for car")
+		counter.Inc()
+	}()
 	err = w.deps.Validations.PaintCar(ctx, request)
 	if err == nil {
 		result, err = w.deps.Controller.PaintCar(ctx, request)
