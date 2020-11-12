@@ -39,16 +39,9 @@ func FromModelCarToSubWorkshopMap(car *data.CarEntity) map[string]interface{} {
 	}
 
 	return map[string]interface{}{
-		"number": car.CarNumber,
-		"owner" : car.Owner,
+		"number":     car.CarNumber,
+		"owner":      car.Owner,
 		"body_style": car.BodyStyle,
-		"color" : car.CurrentColor,
+		"color":      car.CurrentColor,
 	}
-
-	//return &subworkshop.Car{
-	//	Number:    car.CarNumber,
-	//	Owner:     car.Owner,
-	//	BodyStyle: subworkshop.CarBody(subworkshop.CarBody_value[car.BodyStyle]),
-	//	Color:     car.CurrentColor,
-	//}
 }

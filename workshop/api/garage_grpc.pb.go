@@ -35,7 +35,7 @@ func NewWorkshopClient(cc grpc.ClientConnInterface) WorkshopClient {
 
 func (c *workshopClient) AcceptCar(ctx context.Context, in *Car, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/tutorial.workshop.Workshop/AcceptCar", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.workshop.Workshop/AcceptCar", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func (c *workshopClient) AcceptCar(ctx context.Context, in *Car, opts ...grpc.Ca
 
 func (c *workshopClient) PaintCar(ctx context.Context, in *PaintCarRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/tutorial.workshop.Workshop/PaintCar", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.workshop.Workshop/PaintCar", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *workshopClient) PaintCar(ctx context.Context, in *PaintCarRequest, opts
 
 func (c *workshopClient) RetrieveCar(ctx context.Context, in *RetrieveCarRequest, opts ...grpc.CallOption) (*Car, error) {
 	out := new(Car)
-	err := c.cc.Invoke(ctx, "/tutorial.workshop.Workshop/RetrieveCar", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.workshop.Workshop/RetrieveCar", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (c *workshopClient) RetrieveCar(ctx context.Context, in *RetrieveCarRequest
 
 func (c *workshopClient) CarPainted(ctx context.Context, in *PaintFinishedRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/tutorial.workshop.Workshop/CarPainted", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.workshop.Workshop/CarPainted", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func _Workshop_AcceptCar_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tutorial.workshop.Workshop/AcceptCar",
+		FullMethod: "/demo.workshop.Workshop/AcceptCar",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkshopServer).AcceptCar(ctx, req.(*Car))
@@ -138,7 +138,7 @@ func _Workshop_PaintCar_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tutorial.workshop.Workshop/PaintCar",
+		FullMethod: "/demo.workshop.Workshop/PaintCar",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkshopServer).PaintCar(ctx, req.(*PaintCarRequest))
@@ -156,7 +156,7 @@ func _Workshop_RetrieveCar_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tutorial.workshop.Workshop/RetrieveCar",
+		FullMethod: "/demo.workshop.Workshop/RetrieveCar",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkshopServer).RetrieveCar(ctx, req.(*RetrieveCarRequest))
@@ -174,7 +174,7 @@ func _Workshop_CarPainted_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tutorial.workshop.Workshop/CarPainted",
+		FullMethod: "/demo.workshop.Workshop/CarPainted",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkshopServer).CarPainted(ctx, req.(*PaintFinishedRequest))
@@ -183,7 +183,7 @@ func _Workshop_CarPainted_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 var _Workshop_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "tutorial.workshop.Workshop",
+	ServiceName: "demo.workshop.Workshop",
 	HandlerType: (*WorkshopServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

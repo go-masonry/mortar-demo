@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = ".;workshop";
 
-package tutorial.workshop;
+package demo.workshop;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";

@@ -31,7 +31,7 @@ func NewSubWorkshopClient(cc grpc.ClientConnInterface) SubWorkshopClient {
 
 func (c *subWorkshopClient) PaintCar(ctx context.Context, in *SubPaintCarRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/tutorial.subworkshop.SubWorkshop/PaintCar", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.subworkshop.SubWorkshop/PaintCar", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func _SubWorkshop_PaintCar_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tutorial.subworkshop.SubWorkshop/PaintCar",
+		FullMethod: "/demo.subworkshop.SubWorkshop/PaintCar",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SubWorkshopServer).PaintCar(ctx, req.(*SubPaintCarRequest))
@@ -85,7 +85,7 @@ func _SubWorkshop_PaintCar_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 var _SubWorkshop_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "tutorial.subworkshop.SubWorkshop",
+	ServiceName: "demo.subworkshop.SubWorkshop",
 	HandlerType: (*SubWorkshopServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
