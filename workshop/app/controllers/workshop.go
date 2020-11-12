@@ -40,8 +40,8 @@ type workshopController struct {
 func CreateWorkshopController(deps workshopControllerDeps) WorkshopController {
 	client := deps.HTTPClientBuilder().Build()
 	return &workshopController{
-		deps:    deps,
-		client:  client,
+		deps:   deps,
+		client: client,
 	}
 }
 

@@ -204,5 +204,5 @@ var _Workshop_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/garage.proto",
+	Metadata: "api/workshop.proto",
 }

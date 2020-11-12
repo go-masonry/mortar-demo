@@ -19,7 +19,7 @@ gen-api:
 		--go-grpc_out=:api \
         --grpc-gateway_out=:api \
         --openapiv2_out=:. \
-        api/garage.proto\
+        api/*.proto\
 
 test:
 	@echo "Testing ..."

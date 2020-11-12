@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/alecthomas/kong"
-	"github.com/go-masonry/mortar/providers"
 	"github.com/go-masonry/mortar-demo/workshop/app/mortar"
+	"github.com/go-masonry/mortar/providers"
 	"go.uber.org/fx"
 )
 
@@ -27,6 +27,7 @@ func main() {
 
 func createApplication(configFilePath string, additionalFiles []string) *fx.App {
 	return fx.New(
+		fx.NopLogger,                                             // remove fx debug
 		mortar.ViperFxOption(configFilePath, additionalFiles...), // Configuration map
 		mortar.LoggerFxOption(),                                  // Logger
 		mortar.TracerFxOption(),                                  // Jaeger tracing
@@ -35,7 +36,7 @@ func createApplication(configFilePath string, additionalFiles []string) *fx.App 
 		mortar.HttpServerFxOptions(),
 		mortar.InternalHttpHandlersFxOptions(),
 		// Tutorial service dependencies
-		mortar.TutorialAPIsAndOtherDependenciesFxOption(), // register tutorial APIs
+		mortar.WorkshopAPIsAndOtherDependenciesFxOption(), // register tutorial APIs
 		// This one invokes all the above
 		providers.BuildMortarWebServiceFxOption(), // http server invoker
 	)
