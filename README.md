@@ -37,8 +37,6 @@ Now you should have Workshop and Sub Workshop services running. It's time to exe
 
 ### HTTP Calls to Workshop service **http://localhost:5381/v1/workshop**
 
-> In the following HTTP calls, [httpie](https://httpie.io/) is used as a client.
-
 * Register a new car
     ```shell script
     curl -X "POST" "http://localhost:5381/v1/workshop/cars" \
