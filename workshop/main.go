@@ -27,7 +27,7 @@ func main() {
 
 func createApplication(configFilePath string, additionalFiles []string) *fx.App {
 	return fx.New(
-		fx.NopLogger,                                             // remove fx debug
+		fx.NopLogger, // remove fx debug
 		mortar.ViperFxOption(configFilePath, additionalFiles...), // Configuration map
 		mortar.LoggerFxOption(),                                  // Logger
 		mortar.TracerFxOption(),                                  // Jaeger tracing

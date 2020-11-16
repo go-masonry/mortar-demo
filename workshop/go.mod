@@ -8,7 +8,7 @@ require (
 	github.com/go-masonry/bprometheus v0.1.3
 	github.com/go-masonry/bviper v0.1.3
 	github.com/go-masonry/bzerolog v0.1.3
-	github.com/go-masonry/mortar v0.1.4
+	github.com/go-masonry/mortar v0.1.5
 	github.com/golang/mock v1.4.4
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.0.1

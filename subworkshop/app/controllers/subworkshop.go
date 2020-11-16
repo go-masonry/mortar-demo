@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
+	subworkshop "github.com/go-masonry/mortar-demo/subworkshop/api"
+	workshop "github.com/go-masonry/mortar-demo/workshop/api"
 	"github.com/go-masonry/mortar/interfaces/http/client"
 	"github.com/go-masonry/mortar/interfaces/log"
-	"github.com/go-masonry/mortar-demo/subworkshop/api"
-	workshop "github.com/go-masonry/mortar-demo/workshop/api"
 	"github.com/golang/protobuf/ptypes/empty"
 	"go.uber.org/fx"
 	"google.golang.org/grpc"

@@ -143,6 +143,8 @@ github.com/go-masonry/mortar v0.1.1/go.mod h1:l5USXBUHSCePMvP+Eg6KeDsnxEk4xhgnRW
 github.com/go-masonry/mortar v0.1.3/go.mod h1:aFNFEXrPfMeNVQj15o5O5m3UDVEW2EBgRcVIaYe04aQ=
 github.com/go-masonry/mortar v0.1.4 h1:2uDE/P5/tlqpdLWsIY38sQAnqA6m3P+pNcnDheOTiqg=
 github.com/go-masonry/mortar v0.1.4/go.mod h1:OikfH5A0Nfiyu8jadWRMXt31NjlWZoX/ANcPzJAShJk=
+github.com/go-masonry/mortar v0.1.5 h1:gaIoFGgBdOiVRgIAUbFJ8O9AcIgdAuiWKw93R/1K6rY=
+github.com/go-masonry/mortar v0.1.5/go.mod h1:OikfH5A0Nfiyu8jadWRMXt31NjlWZoX/ANcPzJAShJk=
 github.com/go-sql-driver/mysql v1.4.0/go.mod h1:zAC/RDZ24gD3HViQzih4MyKcchzm+sOG5ZlKdlhCg5w=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gogo/googleapis v1.1.0/go.mod h1:gf4bu3Q80BeJ6H1S1vYPm8/ELATdvryBaNFGgqEef3s=

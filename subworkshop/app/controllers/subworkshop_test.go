@@ -6,11 +6,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/go-masonry/mortar/interfaces/http/client"
-	mock_client "github.com/go-masonry/mortar/interfaces/http/client/mock"
 	workshop "github.com/go-masonry/mortar-demo/subworkshop/api"
 	"github.com/go-masonry/mortar-demo/subworkshop/app/controllers"
 	"github.com/go-masonry/mortar-demo/subworkshop/app/mortar"
+	"github.com/go-masonry/mortar/interfaces/http/client"
+	mock_client "github.com/go-masonry/mortar/interfaces/http/client/mock"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/suite"
 	"go.uber.org/fx"

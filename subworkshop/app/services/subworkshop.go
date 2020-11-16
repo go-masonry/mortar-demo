@@ -3,10 +3,10 @@ package services
 import (
 	"context"
 
-	"github.com/go-masonry/mortar/interfaces/log"
-	"github.com/go-masonry/mortar-demo/subworkshop/api"
+	subworkshop "github.com/go-masonry/mortar-demo/subworkshop/api"
 	"github.com/go-masonry/mortar-demo/subworkshop/app/controllers"
 	"github.com/go-masonry/mortar-demo/subworkshop/app/validations"
+	"github.com/go-masonry/mortar/interfaces/log"
 	"github.com/golang/protobuf/ptypes/empty"
 	"go.uber.org/fx"
 )

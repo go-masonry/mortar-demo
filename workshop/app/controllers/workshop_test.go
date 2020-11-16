@@ -161,7 +161,7 @@ func (s *workshopSuite) fxOptions() fx.Option {
 
 func (s *workshopSuite) specialHTTPClientBuilder() clientInt.NewHTTPClientBuilder {
 	return func() clientInt.HTTPClientBuilder {
-		return client.HTTPClientBuilder().AddInterceptors(func(*http.Request, clientInt.HTTPpHandler) (*http.Response, error) {
+		return client.HTTPClientBuilder().AddInterceptors(func(*http.Request, clientInt.HTTPHandler) (*http.Response, error) {
 			// special case, don't go anywhere just return the response
 			return &http.Response{
 				Status:        "200 OK",
