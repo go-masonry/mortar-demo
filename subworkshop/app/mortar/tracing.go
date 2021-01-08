@@ -2,11 +2,11 @@ package mortar
 
 import (
 	"context"
+	confkeys "github.com/go-masonry/mortar/interfaces/cfg/keys"
 
 	"github.com/go-masonry/bjaeger"
 	"github.com/go-masonry/mortar/interfaces/cfg"
 	"github.com/go-masonry/mortar/interfaces/log"
-	"github.com/go-masonry/mortar/mortar"
 	opentracing "github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 )
@@ -22,7 +22,7 @@ func TracerFxOption() fx.Option {
 // Once built it will register Lifecycle hooks (connect on start, close on stop)
 func JaegerBuilder(lc fx.Lifecycle, config cfg.Config, logger log.Logger) (opentracing.Tracer, error) {
 	openTracer, err := bjaeger.Builder().
-		SetServiceName(config.Get(mortar.Name).String()).
+		SetServiceName(config.Get(confkeys.ApplicationName).String()).
 		AddOptions(bjaeger.BricksLoggerOption(logger)). // verbose logging,
 		Build()
 	if err != nil {

@@ -3,8 +3,8 @@ package mortar
 import (
 	"github.com/go-masonry/bprometheus"
 	"github.com/go-masonry/mortar/interfaces/cfg"
+	confkeys "github.com/go-masonry/mortar/interfaces/cfg/keys"
 	"github.com/go-masonry/mortar/interfaces/monitor"
-	mortarProject "github.com/go-masonry/mortar/mortar"
 	"github.com/go-masonry/mortar/providers"
 	"go.uber.org/fx"
 )
@@ -21,6 +21,6 @@ func PrometheusFxOption() fx.Option {
 
 // PrometheusBuilder returns a monitor.Builder that is implemented by Prometheus
 func PrometheusBuilder(cfg cfg.Config) monitor.Builder {
-	name := cfg.Get(mortarProject.Name).String()
+	name := cfg.Get(confkeys.ApplicationName).String()
 	return bprometheus.Builder().SetNamespace(name)
 }

@@ -1,52 +1,54 @@
+# Root key of everything related to mortar configuration
 mortar:
+  # Application/Project name
+  # Type: string
   name: "workshop"
+  # Web server related configuration
   server:
     grpc:
+      # gRPC API External port
+      # Type: int
       port: 5380
     rest:
+      # RESTful API External port
+      # Type: int
       external:
         port: 5381
+      # RESTful API Internal port
+      # Type: int
       internal:
         port: 5382
+  # Default Logger related configuration
   logger:
+    # Set the default log level for mortar logger
+    # Possible values:
+    #		trace, debug, info, warn, error
+    # Type: string
     level: debug
-    console: true
     static:
-      name: true
+      # enables/disables adding a git commit SHA in every log entry
+      # Type: bool
       git: true
+      # enables/disables adding a hostname in every log entry
+      # Type: bool
       host: true
-
+      # enables/disables adding an application/project name in every log entry
+      # Type: bool
+      name: true
+  # Metrics/Monitoring related configuration
   monitor:
-    address: "address:port"
+    # sets the namespace/prefix of every metric. Depends on the Metrics implementation
+    # Type: string
     prefix: "workshop"
+    # allows to include static labels/tags to every published metric
+    # Type: map[string]string
     tags:
       service: workshop
-  middleware:
-    rest:
-      client:
-        trace:
-          request: true
-          response: true
-    grpc:
-      server:
-        log:
-          request: true
-          response: false
-          level: debug
-        trace:
-          request: true
-          response: true
-        headers:
-          - authorization
-      client:
-        trace:
-          request: true
-          response: true
-    logger:
-      headers:
-        - special-header
+  # Bundled handlers configuration
   handlers:
-    self:
+    config:
+      # defines a list of keywords that once contained within the configuration key will obfuscate the value
+      # Type: []string
       obfuscate:
         - "pass"
         - "auth"
@@ -55,8 +57,49 @@ mortar:
         - "user"
         - "logname"
         - "token"
+  # Interceptors/Extractors configuration
+  middleware:
+    # set the default log level of all the bundled middleware that writes to log
+    # Possible values:
+    # 	trace, debug, info, warn, error
+    # Type: string
+    logLevel: "debug"
+    # list of headers to be extracted from Incoming gRPC and added to every log entry
+    # Type: []string
+    logHeaders:
+      - "special-header"
+    trace:
+      http:
+        client:
+          # include HTTP client request to trace info ?
+          # Type: bool
+          request: true
+          # include HTTP client response to trace info ?
+          # Type: bool
+          response: true
+      grpc:
+        client:
+          # include gRPC client request to trace info ?
+          # Type: bool
+          request: true
+          # include gRPC client response to trace info ?
+          # Type: bool
+          response: true
+        server:
+          # include incoming gRPC request to trace info ?
+          # Type: bool
+          request: true
+          # include a gRPC response of incoming request to trace info ?
+          response: true
+    copy:
+      # list of header prefixes to copy/forward from Incoming gRPC context to outgoing Request context/headers
+      # Type: []string
+      headers:
+        - "authorization"
 
 workshop:
+  logger:
+    console: true
   services:
     subworkshop:
       callbackhost: "localhost"
